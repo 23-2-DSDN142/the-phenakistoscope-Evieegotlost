@@ -8,6 +8,7 @@ function setup_pScope(pScope){
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("star" , "png");
   pScope.load_image("koifish" , "png");
+  pScope.load_image("jellyfish" , "png");
 }
 
 function setup_layers(pScope){
@@ -30,6 +31,11 @@ function setup_layers(pScope){
   center.mode( RING );
   center.set_boundary( 0, 400 );
  
+  
+  var layer1 = new PLayer(clouds);
+  layer1.mode(RING);
+  layer1.set_boundary( 0, 800 );
+
   var center = new PLayer(rings);
   center.mode( RING );
   center.set_boundary( 0, 400 );
@@ -50,13 +56,19 @@ function setup_layers(pScope){
   center.mode( RING );
   center.set_boundary( 0, 400 );
   
-  var center = new PLayer(ringstar2);
-  center.mode( RING );
-  center.set_boundary( 0, 400 );
+  // var center = new PLayer(ringstar2);
+  // center.mode( RING );
+  // center.set_boundary( 0, 400 );
+
+  var layer1 = new PLayer(jellyfish);
+layer1.mode(RING);
+layer1.set_boundary( 0, 800 );
 
   var center = new PLayer(koi);
   center.mode( RING );
   center.set_boundary( 0, 400 );
+
+  
 }
 
 
@@ -77,7 +89,7 @@ function rings (x, y, animation, Pscope){
   strokeWeight(3)
   noFill();
   ellipse(0, 0, 1800, 1800)
-  ellipse(0, 0, 1200, 1200)
+  // ellipse(0, 0, 1200, 1200)
 }
 
 function ringstar(x, y, animation, pScope){
@@ -90,14 +102,14 @@ function ringstar(x, y, animation, pScope){
 
   } 
 
-function ringstar2(x, y, animation, pScope){
-    push()
-    rotate(-24*animation.frame);
-    scale(3)
-    pScope.draw_image("star",x,201);
-    pop()
+// function ringstar2(x, y, animation, pScope){
+//     push()
+//     rotate(-24*animation.frame);
+//     scale(3)
+//     pScope.draw_image("star",x,201);
+//     pop()
 
-} 
+// } 
 
 function koi(x, y, animation, pScope){
     push()
@@ -174,3 +186,37 @@ function squares(x, y, animation, pScope){
 
 }
 
+
+
+function jellyfish(x, y, animation, pScope){
+//translate(50 * animation.frame, 0);
+//scale(animation.frame*2);
+fill(196, 252, 255)
+
+let jellySize  = 1800 + (animation.wave(1)* 50)
+let bounce = 20* animation.wave()
+// ellipse(150, 750+bounce ,jellySize); 
+push()
+angleMode(DEGREES);
+translate(0,jellySize);
+rotate(180);
+scale(0.6);
+pScope.draw_image("jellyfish",bounce,jellySize);
+pop()
+
+}
+
+
+function clouds(x, y, animation, pScope){
+  //translate(50 * animation.frame, 0);
+  //scale(animation.frame*2);
+  noStroke(); 
+  fill(255, 255, 255)
+  
+  let ballSize  = 200 + (animation.wave(1)* 50)
+  let bounce = 50* animation.wave()
+  ellipse(200, 950+bounce ,ballSize); 
+  ellipse(280, 950+bounce ,ballSize); 
+  ellipse(440, 890+bounce ,ballSize); 
+
+}
