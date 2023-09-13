@@ -13,24 +13,11 @@ function setup_pScope(pScope){
 
 function setup_layers(pScope){
 
-  new PLayer(null, 26, 14, 87);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 4, 45, 91);  //lets us draw the whole circle background, ignoring the boundaries
 
-  var layer2 = new PLayer(accentwave);
+  var layer2 = new PLayer(waves);
   layer2.mode( RING );
   layer2.set_boundary( 0, 400 );
-
-  var layer2 = new PLayer(sundial);
-  layer2.mode( RING );
-  layer2.set_boundary( 0, 400 );
-
-  var layer2 = new PLayer(squares);
-  layer2.mode( RING );
-  layer2.set_boundary( 0, 400 );
-  
-  var center = new PLayer(depth);
-  center.mode( RING );
-  center.set_boundary( 0, 400 );
- 
   
   var layer1 = new PLayer(clouds);
   layer1.mode(RING);
@@ -71,33 +58,20 @@ layer1.set_boundary( 0, 800 );
   
 }
 
-
-function depth (x, y, animation, Pscope){
-  noStroke();
-  fill("#83CDDA")
-  ellipse(0, 0, 1250, 1250)
-  fill("#5FB4CA")
-  ellipse(0, 0, 1000, 1000)
-  fill("#3A9BB9")
-  ellipse(0, 0, 800, 800)
-  fill("#1682A9")
-  ellipse(0, 0, 550, 550)
-}
-
 function rings (x, y, animation, Pscope){
   stroke("#f5cf67");
   strokeWeight(3)
   noFill();
-  ellipse(0, 0, 1800, 1800)
+  ellipse(0, 0, 1650, 1650)
   // ellipse(0, 0, 1200, 1200)
 }
 
 function ringstar(x, y, animation, pScope){
 
   push()
-  rotate(24*animation.frame);
+  rotate(23*animation.frame);
     scale(3)
-    pScope.draw_image("star",x,300);
+    pScope.draw_image("star",x,275);
     pop()
 
   } 
@@ -139,7 +113,7 @@ function particle2(x, y, animation, pScope){
   noStroke(); 
   scale(animation.wave(4));
   let particle2x = animation.wave(1)-120
-  fill(23, 109, 179, 90);
+  fill(41, 153, 214, 90);
   ellipse(particle2x,0,50,50);
 
 }
@@ -153,47 +127,33 @@ function particle3(x, y, animation, pScope){
 
 }
 
-function sundial(x, y, animation, pScope){
-  noStroke(); 
-  let sundialx = animation.wave(1)-280
-  fill(255, 255, 255);
-  rect(sundialx,0,20,20);
-}
-
-function accentwave(x, y, animation, pScope){
-  noStroke(); 
-  let angleOffset = (360 / SLICE_COUNT) / 2
-  let backgroundArcStart = 270 - angleOffset;
-  let backgroundArcEnd = 270 + angleOffset;
-
-  fill("#5468cc");
-  arc(x,y,1100,1600,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
-
-}
-
-function squares(x, y, animation, pScope){
+function waves(x, y, animation, pScope){
   noStroke(); 
   // this is how you set up a background for a specific layer
   let angleOffset = (360 / SLICE_COUNT) / 2
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
-  fill("#5ba8e3") //#A8E6EB
-  arc(x,y,1000,1400,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
-
-  // fill(255)
-  // rect(-10,-300-animation.wave()*50,20,20) // .wave is a cosine wave btw
-
+  fill("#14426D");
+  arc(x,y,1100,1600,backgroundArcStart,backgroundArcEnd);
+  fill("#245680") 
+  arc(x,y,1000,1400,backgroundArcStart,backgroundArcEnd);
+  fill("#346B92")
+  arc(x,y,800,1200,backgroundArcStart,backgroundArcEnd);
+  fill("#4380A4")
+  arc(x,y,600,1000,backgroundArcStart,backgroundArcEnd);
+  fill("#5394B7")
+  arc(x,y,400,800,backgroundArcStart,backgroundArcEnd);
+  fill("#63A9C9")
+  arc(x,y,200,600,backgroundArcStart,backgroundArcEnd);
 }
-
-
 
 function jellyfish(x, y, animation, pScope){
 //translate(50 * animation.frame, 0);
 //scale(animation.frame*2);
 fill(196, 252, 255)
 
-let jellySize  = 1800 + (animation.wave(1)* 50)
+let jellySize  = 1700 + (animation.wave(1)* 50)
 let bounce = 20* animation.wave()
 // ellipse(150, 750+bounce ,jellySize); 
 push()
