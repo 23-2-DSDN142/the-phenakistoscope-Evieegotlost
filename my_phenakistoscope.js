@@ -1,13 +1,13 @@
 const SLICE_COUNT = 16;
 
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("star" , "png");
-  pScope.load_image("koifish" , "png");
+  pScope.load_image("koi" , "png");
   pScope.load_image("jellyfish" , "png");
 }
 
@@ -69,7 +69,7 @@ function rings (x, y, animation, Pscope){
 function ringstar(x, y, animation, pScope){
 
   push()
-  rotate(23*animation.frame);
+  rotate(22*animation.frame);
     scale(3)
     pScope.draw_image("star",x,275);
     pop()
@@ -87,9 +87,9 @@ function ringstar(x, y, animation, pScope){
 
 function koi(x, y, animation, pScope){
     push()
-    scale(6)
+    scale(1.4)
     if(animation.frame == 0){
-    pScope.draw_image("koifish",x,y);
+    pScope.draw_image("koi",x,y);
     }
     pop()
 }
