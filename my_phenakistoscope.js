@@ -71,13 +71,11 @@ function rings (x, y, animation, Pscope){
 }
 
 function ringstar(x, y, animation, pScope){
-
   push()
   rotate(24*animation.frame);
     scale(3)
     pScope.draw_image("star",x,275);
     pop()
-
   } 
 
 // function ringstar2(x, y, animation, pScope){
@@ -100,13 +98,10 @@ function koi(x, y, animation, pScope){
 
 function particle1(x, y, animation, pScope){
   noStroke(); 
-  //const startColor = color("#b5e4ff");
-  //const endColor = color("#3a6099");
   scale(animation.wave(2));
   let particle1x = animation.wave(1)+100
   fill(181, 228, 255, 200);
   ellipse(particle1x,0,40,50);
-
 }
 
 function particle2(x, y, animation, pScope){
@@ -115,7 +110,6 @@ function particle2(x, y, animation, pScope){
   let particle2x = animation.wave(1)-120
   fill(41, 153, 214, 90);
   ellipse(particle2x,0,50,50);
-
 }
 
 function particle3(x, y, animation, pScope){
@@ -124,7 +118,6 @@ function particle3(x, y, animation, pScope){
   let particle3x = animation.wave(1)-280
   fill(255, 255, 255);
   ellipse(particle3x,0,20,20);
-
 }
 
 function waves(x, y, animation, pScope){
@@ -149,13 +142,9 @@ function waves(x, y, animation, pScope){
 }
 
 function jellyfish(x, y, animation, pScope){
-//translate(50 * animation.frame, 0);
-//scale(animation.frame*2);
-fill(196, 252, 255)
-
 let jellySize  = 1700 + (animation.wave(1)* 50)
 let bounce = 20* animation.wave()
-// ellipse(150, 750+bounce ,jellySize); 
+
 push()
 angleMode(DEGREES);
 translate(0,jellySize);
@@ -163,12 +152,9 @@ rotate(180);
 scale(0.6);
 pScope.draw_image("jellyfish",bounce,jellySize);
 pop()
-
 }
 
 function clouds(x, y, animation, pScope){
-  //translate(50 * animation.frame, 0);
-  //scale(animation.frame*2);
   noStroke(); 
   fill(255, 255, 255)
   
@@ -177,7 +163,6 @@ function clouds(x, y, animation, pScope){
   ellipse(200, 950+bounce ,ballSize); 
   ellipse(280, 950+bounce ,ballSize); 
   ellipse(440, 890+bounce ,ballSize); 
-
 }
 
 function shells(x,y,animation,pScope){
