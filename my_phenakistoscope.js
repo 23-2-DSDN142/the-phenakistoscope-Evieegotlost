@@ -1,7 +1,7 @@
 const SLICE_COUNT = 16;
 
 function setup_pScope(pScope){
-  pScope.output_mode(STATIC_DISK);
+  pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
@@ -9,6 +9,7 @@ function setup_pScope(pScope){
   pScope.load_image("star" , "png");
   pScope.load_image("koi" , "png");
   pScope.load_image("jellyfish" , "png");
+  pScope.load_image_sequence("shellspin", "png", 24);
 }
 
 function setup_layers(pScope){
@@ -48,18 +49,21 @@ function setup_layers(pScope){
   // center.set_boundary( 0, 400 );
 
   var layer1 = new PLayer(jellyfish);
-layer1.mode(RING);
-layer1.set_boundary( 0, 800 );
+  layer1.mode(RING);
+  layer1.set_boundary( 0, 800 );
 
   var center = new PLayer(koi);
   center.mode( RING );
   center.set_boundary( 0, 400 );
 
+  let shellSequence = new PLayer(shells);
+  shellSequence.mode(RING);
+  shellSequence.set_boundary(0,1000);
   
 }
 
 function rings (x, y, animation, Pscope){
-  stroke("#f5cf67");
+  stroke("#bf9c3d");
   strokeWeight(3)
   noFill();
   ellipse(0, 0, 1650, 1650)
@@ -69,7 +73,7 @@ function rings (x, y, animation, Pscope){
 function ringstar(x, y, animation, pScope){
 
   push()
-  rotate(22*animation.frame);
+  rotate(24*animation.frame);
     scale(3)
     pScope.draw_image("star",x,275);
     pop()
@@ -102,10 +106,6 @@ function particle1(x, y, animation, pScope){
   let particle1x = animation.wave(1)+100
   fill(181, 228, 255, 200);
   ellipse(particle1x,0,40,50);
-
-
-  //if(animation.frame <= 0.5){
-  // lerpColor(startColor, endcolor, 0.5); }
 
 }
 
@@ -166,7 +166,6 @@ pop()
 
 }
 
-
 function clouds(x, y, animation, pScope){
   //translate(50 * animation.frame, 0);
   //scale(animation.frame*2);
@@ -179,4 +178,10 @@ function clouds(x, y, animation, pScope){
   ellipse(280, 950+bounce ,ballSize); 
   ellipse(440, 890+bounce ,ballSize); 
 
+}
+
+function shells(x,y,animation,pScope){
+  translate(x,y-450);
+  scale(0.8);
+  pScope.draw_image_from_sequence("shellspin", 0, 0, animation.frame);
 }
